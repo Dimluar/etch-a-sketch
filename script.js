@@ -1,8 +1,6 @@
 const canvas = document.querySelector(".canvas");
 
-makeGrid(16);
-
-function makeGrid(n) {
+function makeGrid(n, brush) {
   if (n === "cancel") return;
 
   // Creates grid of size nxn on canvas
@@ -31,10 +29,16 @@ function makeGrid(n) {
     }
   }
 
+  function backgroundColor(element, brush) {
+    if (brush === "black") {
+      element.style.backgroundColor = "black";
+    }
+  }
+
   const allGrids = document.querySelectorAll(".canvasPixel");
   for (pixel of allGrids) {
     pixel.addEventListener("mouseenter", (e) => {
-      e.target.style.backgroundColor = "black";
+      backgroundColor(e.target, brush);
     });
   }
 }
@@ -62,11 +66,23 @@ WARNING: the value "0" is equivalent to press Cancel!`;
 }
 
 const sizeBtn = document.querySelector("#size-btn");
+const normalBtn = document.querySelector("#normal-btn");
+
+let actualSize = 16;
+let actualBrush = "black";
+
+makeGrid(actualSize, actualBrush);
 
 document.addEventListener("click", (e) => {
   switch (e.target) {
     case sizeBtn:
-      makeGrid(getDesiredSize());
+      actualSize = getDesiredSize();
+      makeGrid(actualSize, actualBrush);
+      break;
+    case normalBtn:
+      actualBrush = "black";
+      makeGrid(actualSize, actualBrush);
+      normalBtn.classList.add("selected-btn");
       break;
   }
 });

@@ -55,8 +55,13 @@ body {
   padding: 5px;
   border-radius: 5px 5px 0 0;
   flex: 1;
+  border-right: 2px solid black;
 }
 
 .btn:hover {
   background-color: lightgrey;
+}
+
+.selected-btn {
+  background-color: grey;
 }
