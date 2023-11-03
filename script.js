@@ -21,9 +21,20 @@ function makeGrid(n) {
       gridUnit.style.boxShadow = "0px 0px 1px black";
       gridUnit.style.height = `${gridSize}px`;
       gridUnit.style.width = `${gridSize}px`;
+      gridUnit.classList.add("canvasPixel");
       gridUnit.style.flex = "1";
 
       gridRow.appendChild(gridUnit);
     }
   }
+}
+
+const allGrids = document.querySelectorAll(".canvasPixel");
+
+console.table(allGrids);
+
+for (pixel of allGrids) {
+  pixel.addEventListener("mouseenter", (e) => {
+    e.target.style.backgroundColor = "black";
+  });
 }
