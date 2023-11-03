@@ -3,6 +3,8 @@ const canvas = document.querySelector(".canvas");
 makeGrid(16);
 
 function makeGrid(n) {
+  if (n === "cancel") return;
+
   // Creates grid of size nxn on canvas
   canvas.innerHTML = "";
 
@@ -36,3 +38,35 @@ function makeGrid(n) {
     });
   }
 }
+
+function getDesiredSize() {
+  let message = `Pixels per side? (max. 100)
+WARNING: the value "0" is equivalent to press Cancel!`;
+  while (true) {
+    let sideSize = +prompt(message);
+
+    console.log(sideSize);
+
+    if (sideSize > 100) {
+      message = "Number must be at most 100";
+    } else if (sideSize < 0) {
+      message = "Number must be greater than 0";
+    } else if (sideSize == NaN) {
+      message = "Must be a valid number";
+    } else if (sideSize == 0) {
+      return "cancel";
+    } else {
+      return sideSize;
+    }
+  }
+}
+
+const sizeBtn = document.querySelector("#size-btn");
+
+document.addEventListener("click", (e) => {
+  switch (e.target) {
+    case sizeBtn:
+      makeGrid(getDesiredSize());
+      break;
+  }
+});
