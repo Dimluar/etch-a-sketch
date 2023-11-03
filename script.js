@@ -66,7 +66,8 @@ WARNING: the value "0" is equivalent to press Cancel!`;
 }
 
 const sizeBtn = document.querySelector("#size-btn");
-const normalBtn = document.querySelector("#normal-btn");
+const blackBtn = document.querySelector("#black-btn");
+blackBtn.classList.add("selected-btn");
 
 let actualSize = 16;
 let actualBrush = "black";
@@ -79,10 +80,10 @@ document.addEventListener("click", (e) => {
       actualSize = getDesiredSize();
       makeGrid(actualSize, actualBrush);
       break;
-    case normalBtn:
+    case blackBtn:
       actualBrush = "black";
       makeGrid(actualSize, actualBrush);
-      normalBtn.classList.add("selected-btn");
+      blackBtn.classList.add("selected-btn");
       break;
   }
 });
