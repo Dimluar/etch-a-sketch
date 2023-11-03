@@ -6,4 +6,33 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.canvas {
+  box-sizing: content-box;
+  height: 480px;
+  width: 480px;
+  border: 4px solid black;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
