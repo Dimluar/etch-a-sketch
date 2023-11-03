@@ -32,6 +32,12 @@ function makeGrid(n, brush) {
   function backgroundColor(element, brush) {
     if (brush === "black") {
       element.style.backgroundColor = "black";
+    } else if (brush === "rainbow") {
+      element.style.backgroundColor = `
+        rgb(${getRandomNumber(255)},${getRandomNumber(255)},${getRandomNumber(
+        255
+      )})
+      `;
     }
   }
 
@@ -65,12 +71,18 @@ WARNING: the value "0" is equivalent to press Cancel!`;
   }
 }
 
+function getRandomNumber(n) {
+  // Obtain random number from 0 to n
+  return Math.floor(Math.random() * (n + 1));
+}
+
 const sizeBtn = document.querySelector("#size-btn");
 const blackBtn = document.querySelector("#black-btn");
-blackBtn.classList.add("selected-btn");
+const rainbowBtn = document.querySelector("#rainbow-btn");
 
 let actualSize = 16;
 let actualBrush = "black";
+blackBtn.classList.add("selected-btn");
 
 makeGrid(actualSize, actualBrush);
 
@@ -83,7 +95,13 @@ document.addEventListener("click", (e) => {
     case blackBtn:
       actualBrush = "black";
       makeGrid(actualSize, actualBrush);
+      rainbowBtn.classList.remove("selected-btn");
       blackBtn.classList.add("selected-btn");
       break;
+    case rainbowBtn:
+      actualBrush = "rainbow";
+      makeGrid(actualSize, actualBrush);
+      blackBtn.classList.remove("selected-btn");
+      rainbowBtn.classList.add("selected-btn");
   }
 });
