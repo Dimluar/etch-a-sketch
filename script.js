@@ -29,6 +29,7 @@ function makeGrid(n, brush) {
     }
   }
 
+  let count = 0;
   function backgroundColor(element, brush) {
     if (brush === "black") {
       element.style.backgroundColor = "black";
@@ -36,8 +37,25 @@ function makeGrid(n, brush) {
       element.style.backgroundColor = `
         rgb(${getRandomNumber(255)},${getRandomNumber(255)},${getRandomNumber(
         255
-      )})
-      `;
+      )})`;
+    } else if (brush === "black-dark") {
+      element.style.backgroundColor = `
+      rgba(0,0,0,${count / 10 + 0.1})`;
+      if (count < 9) {
+        count++;
+      } else {
+        count = 0;
+      }
+    } else if (brush === "rainbow-dark") {
+      element.style.backgroundColor = `
+      rgba(${getRandomNumber(255)},${getRandomNumber(255)},${getRandomNumber(
+        255
+      )},${count / 10 + 0.1})`;
+      if (count < 9) {
+        count++;
+      } else {
+        count = 0;
+      }
     }
   }
 
@@ -79,6 +97,7 @@ function getRandomNumber(n) {
 const sizeBtn = document.querySelector("#size-btn");
 const blackBtn = document.querySelector("#black-btn");
 const rainbowBtn = document.querySelector("#rainbow-btn");
+const darkBtn = document.querySelector("#dark-btn");
 
 let actualSize = 16;
 let actualBrush = "black";
@@ -96,12 +115,33 @@ document.addEventListener("click", (e) => {
       actualBrush = "black";
       makeGrid(actualSize, actualBrush);
       rainbowBtn.classList.remove("selected-btn");
+      darkBtn.classList.remove("selected-btn");
       blackBtn.classList.add("selected-btn");
       break;
     case rainbowBtn:
       actualBrush = "rainbow";
       makeGrid(actualSize, actualBrush);
       blackBtn.classList.remove("selected-btn");
+      darkBtn.classList.remove("selected-btn");
       rainbowBtn.classList.add("selected-btn");
+      break;
+    case darkBtn:
+      switch (actualBrush) {
+        case "black":
+          actualBrush = "black-dark";
+          break;
+        case "rainbow":
+          actualBrush = "rainbow-dark";
+          break;
+        case "black-dark":
+          actualBrush = "black";
+          break;
+        case "rainbow-dark":
+          actualBrush = "rainbow";
+          break;
+      }
+      makeGrid(actualSize, actualBrush);
+      darkBtn.classList.toggle("selected-btn");
+      console.log(actualBrush);
   }
 });
