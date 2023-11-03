@@ -98,6 +98,7 @@ const sizeBtn = document.querySelector("#size-btn");
 const blackBtn = document.querySelector("#black-btn");
 const rainbowBtn = document.querySelector("#rainbow-btn");
 const darkBtn = document.querySelector("#dark-btn");
+const cleanBtn = document.querySelector("#clean-btn");
 
 let actualSize = 16;
 let actualBrush = "black";
@@ -143,5 +144,8 @@ document.addEventListener("click", (e) => {
       makeGrid(actualSize, actualBrush);
       darkBtn.classList.toggle("selected-btn");
       console.log(actualBrush);
+      break;
+    case cleanBtn:
+      makeGrid(actualSize, actualBrush);
   }
 });

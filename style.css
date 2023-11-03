@@ -64,3 +64,12 @@ body {
 .selected-btn {
   background-color: grey;
 }
+
+#clean-btn {
+  border-radius: 0 0 5px 5px;
+  background-color: rgba(255, 0, 0, 0.4);
+}
+
+#clean-btn:hover {
+  background-color: rgba(255, 0, 0, 0.7);
+}
